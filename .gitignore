@@ -1,0 +1,52 @@
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Private configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+.aws/
+secrets/
+credentials/
+
+# Runtime state, logs, caches, and temporary files
+.runtime/
+*.log
+.cache/
+.npm/
+.pnpm-store/
+.eslintcache
+.tmp/
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local planning, assignment materials, benchmark output, and archives
+[Pp][Ll][Aa][Nn].[Mm][Dd]
+*.[Pp][Dd][Ff]
+load-results/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.rar

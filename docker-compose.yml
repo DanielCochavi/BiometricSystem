@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: interview
+      POSTGRES_PASSWORD: interview
+      POSTGRES_DB: interview
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-55432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U interview -d interview"]
+      interval: 3s
+      timeout: 3s
+      retries: 20

@@ -1,0 +1,66 @@
+{
+  "name": "backend-realtime-interview-task",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend interview exercise focused on realtime biometric ingestion",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build",
+    "start": "node --env-file=.env node_modules/@nestjs/cli/bin/nest.js start",
+    "start:dev": "node --env-file=.env node_modules/@nestjs/cli/bin/nest.js start --watch",
+    "start:prod": "node --env-file=.env dist/main.js",
+    "test": "jest --runInBand",
+    "test:phase1": "jest --runInBand test/auth.service.spec.ts test/access.integration.spec.ts test/realtime.gateway.spec.ts",
+    "test:postgres": "jest --runInBand test/measurements.postgres.spec.ts",
+    "test:watch": "jest --watch",
+    "migration:run": "node --env-file=.env -r ts-node/register node_modules/typeorm/cli.js migration:run -d src/database/data-source.ts",
+    "migration:revert": "node --env-file=.env -r ts-node/register node_modules/typeorm/cli.js migration:revert -d src/database/data-source.ts",
+    "simulate": "node --env-file=.env -r ts-node/register scripts/device-simulator.ts",
+    "listen": "node --env-file=.env -r ts-node/register scripts/ws-listener.ts",
+    "test:realtime": "jest --runInBand test/realtime.postgres.spec.ts",
+    "test:load": "node --env-file=.env -r ts-node/register scripts/load-test.ts",
+    "verify:backup": "node --env-file=.env -r ts-node/register scripts/verify-backup.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/platform-express": "^11.2.7",
+    "@nestjs/platform-socket.io": "^11.1.6",
+    "@nestjs/typeorm": "^11.0.0",
+    "@nestjs/websockets": "^11.1.6",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "typeorm": "^0.3.26"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.10",
+    "@nestjs/testing": "^11.1.6",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.15.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.(t|j)s"
+    ],
+    "testEnvironment": "node"
+  }
+}
